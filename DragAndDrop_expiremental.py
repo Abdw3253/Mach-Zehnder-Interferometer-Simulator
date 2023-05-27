@@ -1,6 +1,17 @@
 from PyQt5.QtWidgets import QApplication, QHBoxLayout, QWidget, QPushButton
+from PyQt5.QtCore import Qt, QMimeData
+from PyQt5.QtGui import QDrag
 
+class DragButton(QPushButton):
 
+    def mouseMoveEvent(self, e):
+
+        if e.buttons() == Qt.LeftButton:
+            drag = QDrag(self)
+            mime = QMimeData()
+            drag.setMimeData(mime)
+            drag.exec_(Qt.MoveAction)
+            
 class Window(QWidget):
 
     def __init__(self):
